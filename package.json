@@ -1,0 +1,18 @@
+{
+    "name": "alumni-platform",
+    "version": "1.0.0",
+    "description": "Digital Platform for Centralized Alumni Data Management",
+    "main": "index.js",
+    "scripts": {
+        "start": "node backend/server.js",
+        "server": "nodemon backend/server.js",
+        "client": "npm run dev --prefix frontend",
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "install-all": "npm install && npm install --prefix backend && npm install --prefix frontend"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "concurrently": "^8.2.2"
+    }
+}
