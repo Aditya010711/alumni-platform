@@ -116,7 +116,7 @@ const AdminDashboard = () => {
                                             <td className="px-6 py-4 whitespace-nowrap">
                                                 <div className="flex items-center gap-3">
                                                     {u.profile?.profilePicture ? (
-                                                        <img src={`http://localhost:5000${u.profile.profilePicture}`} alt="" className="w-10 h-10 rounded-full object-cover" />
+                                                        <img src={`https://alumni-platform-rwbo.onrender.com${u.profile.profilePicture}`} alt="" className="w-10 h-10 rounded-full object-cover" />
                                                     ) : (
                                                         <div className="w-10 h-10 rounded-full bg-primary-100 text-primary-600 flex justify-center items-center font-bold text-sm uppercase">
                                                             {u.username[0]}

@@ -28,7 +28,7 @@ const GlobalSocketListener = () => {
   useEffect(() => {
     let socket;
     if (user) {
-      socket = io(import.meta.env.VITE_API_URL || 'http://localhost:5000', {
+      socket = io(import.meta.env.VITE_API_URL || 'https://alumni-platform-rwbo.onrender.com', {
         query: { userId: user.id },
       });
 

@@ -71,7 +71,7 @@ const PostCard = ({ post, onPostUpdated }) => {
             {isShared && (
                 <div className="flex items-center gap-3 mb-3 pb-3 border-b border-gray-200 dark:border-gray-700">
                     {p.author?.profilePicture ? (
-                        <img src={`http://localhost:5000${p.author.profilePicture}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover" />
+                        <img src={`https://alumni-platform-rwbo.onrender.com${p.author.profilePicture}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover" />
                     ) : (
                         <div className="w-8 h-8 bg-primary-100 dark:bg-gray-600 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-xs uppercase">
                             {p.author?.firstName?.[0]}{p.author?.lastName?.[0]}
@@ -88,7 +88,7 @@ const PostCard = ({ post, onPostUpdated }) => {
 
             {p.image && (
                 <div className="mt-4 rounded-lg overflow-hidden border border-gray-100 dark:border-gray-700">
-                    <img src={`http://localhost:5000${p.image}`} alt="Post content" className="w-full h-auto object-cover max-h-96" />
+                    <img src={`https://alumni-platform-rwbo.onrender.com${p.image}`} alt="Post content" className="w-full h-auto object-cover max-h-96" />
                 </div>
             )}
 
@@ -126,7 +126,7 @@ const PostCard = ({ post, onPostUpdated }) => {
             <div className="flex justify-between items-start">
                 <div className="flex items-center gap-3">
                     {post.author?.profilePicture ? (
-                        <img src={`http://localhost:5000${post.author.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" />
+                        <img src={`https://alumni-platform-rwbo.onrender.com${post.author.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" />
                     ) : (
                         <div className="w-12 h-12 bg-primary-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-lg uppercase">
                             {post.author?.firstName?.[0]}{post.author?.lastName?.[0]}
@@ -209,7 +209,7 @@ const PostCard = ({ post, onPostUpdated }) => {
                             {post.comments?.map((comment, index) => (
                                 <div key={comment._id || index} className="flex gap-3">
                                     {comment.author?.profilePicture ? (
-                                        <img src={`http://localhost:5000${comment.author.profilePicture}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-1" />
+                                        <img src={`https://alumni-platform-rwbo.onrender.com${comment.author.profilePicture}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover flex-shrink-0 mt-1" />
                                     ) : (
                                         <div className="w-8 h-8 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full flex items-center justify-center font-bold text-xs uppercase flex-shrink-0 mt-1">
                                             {comment.author?.firstName?.[0]}{comment.author?.lastName?.[0]}

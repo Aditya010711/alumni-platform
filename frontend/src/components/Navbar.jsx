@@ -83,7 +83,7 @@ const Navbar = () => {
                                 <Link to="/profile" className="flex items-center gap-2 text-gray-600 dark:text-gray-300 hover:text-primary-600 transition-colors">
                                     {profilePic ? (
                                         <img
-                                            src={`http://localhost:5000${profilePic}`}
+                                            src={`https://alumni-platform-rwbo.onrender.com${profilePic}`}
                                             alt="Profile"
                                             className="w-8 h-8 rounded-full object-cover border border-gray-200 dark:border-gray-600"
                                         />

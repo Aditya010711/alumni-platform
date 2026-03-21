@@ -115,7 +115,7 @@ const Profile = () => {
                     <div className="relative w-24 h-24 mx-auto mb-4 group cursor-pointer">
                         {profilePicture ? (
                             <img
-                                src={`http://localhost:5000${profilePicture}`}
+                                src={`https://alumni-platform-rwbo.onrender.com${profilePicture}`}
                                 alt="Profile"
                                 className="w-full h-full rounded-full object-cover shadow-md border-4 border-white dark:border-gray-800 transition-colors"
                             />

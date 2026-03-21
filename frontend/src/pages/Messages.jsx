@@ -96,7 +96,7 @@ const Messages = () => {
     // Initialize Socket
     useEffect(() => {
         if (user) {
-            socket.current = io(import.meta.env.VITE_API_URL || 'http://localhost:5000', {
+            socket.current = io(import.meta.env.VITE_API_URL || 'https://alumni-platform-rwbo.onrender.com', {
                 query: { userId: user.id },
             });
 
@@ -210,7 +210,7 @@ const Messages = () => {
                                         className="flex items-center gap-3 p-3 hover:bg-gray-50 dark:hover:bg-gray-750 cursor-pointer border-b border-gray-50 dark:border-gray-700/50"
                                     >
                                         {profile.profilePicture ? (
-                                            <img src={`http://localhost:5000${profile.profilePicture}`} className="w-10 h-10 rounded-full object-cover" />
+                                            <img src={`https://alumni-platform-rwbo.onrender.com${profile.profilePicture}`} className="w-10 h-10 rounded-full object-cover" />
                                         ) : (
                                             <div className="w-10 h-10 rounded-full bg-primary-100 text-primary-600 flex justify-center items-center font-bold text-sm">
                                                 {profile.firstName?.[0] || 'U'}{profile.lastName?.[0] || 'S'}
@@ -242,7 +242,7 @@ const Messages = () => {
                                         >
                                             <div className="relative">
                                                 {c.partner.profilePicture ? (
-                                                    <img src={`http://localhost:5000${c.partner.profilePicture}`} className="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-800" />
+                                                    <img src={`https://alumni-platform-rwbo.onrender.com${c.partner.profilePicture}`} className="w-12 h-12 rounded-full object-cover border-2 border-white dark:border-gray-800" />
                                                 ) : (
                                                     <div className="w-12 h-12 rounded-full bg-primary-100 text-primary-600 flex justify-center items-center font-bold border-2 border-white dark:border-gray-800">
                                                         {c.partner.username[0].toUpperCase()}
@@ -273,7 +273,7 @@ const Messages = () => {
                             >
                                 <div className="relative">
                                     {c.partner.profilePicture ? (
-                                        <img src={`http://localhost:5000${c.partner.profilePicture}`} alt="" className="w-12 h-12 rounded-full object-cover" />
+                                        <img src={`https://alumni-platform-rwbo.onrender.com${c.partner.profilePicture}`} alt="" className="w-12 h-12 rounded-full object-cover" />
                                     ) : (
                                         <div className="w-12 h-12 rounded-full bg-primary-100 text-primary-600 flex justify-center items-center font-bold">
                                             {c.partner.username[0].toUpperCase()}
@@ -301,7 +301,7 @@ const Messages = () => {
                         {/* Chat Header */}
                         <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
                             {currentChat.partner.profilePicture ? (
-                                <img src={`http://localhost:5000${currentChat.partner.profilePicture}`} alt="" className="w-10 h-10 rounded-full object-cover" />
+                                <img src={`https://alumni-platform-rwbo.onrender.com${currentChat.partner.profilePicture}`} alt="" className="w-10 h-10 rounded-full object-cover" />
                             ) : (
                                 <div className="w-10 h-10 rounded-full bg-primary-100 text-primary-600 flex justify-center items-center font-bold">
                                     {currentChat.partner.username[0].toUpperCase()}

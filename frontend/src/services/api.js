@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'http://localhost:5000/api', // Assume backend runs on port 5000 locally
+    baseURL: 'https://alumni-platform-rwbo.onrender.com/api', // Assume backend runs on port 5000 locally
 });
 
 // Add a request interceptor to attach the JWT token
