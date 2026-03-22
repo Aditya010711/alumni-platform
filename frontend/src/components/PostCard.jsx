@@ -123,7 +123,7 @@ const PostCard = ({ post, onPostUpdated }) => {
             className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-5 sm:p-6 mb-6 transition-colors"
         >
             {/* Header */}
-            <div className="flex justify-between items-start">
+            <div className="flex flex-wrap justify-between items-start gap-2">
                 <div className="flex items-center gap-3">
                     {post.author?.profilePicture ? (
                         <img src={`https://alumni-platform-rwbo.onrender.com${post.author.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" />

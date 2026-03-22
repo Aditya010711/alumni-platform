@@ -156,8 +156,8 @@ const Directory = () => {
                                         )}
                                     </div>
 
-                                    <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 flex justify-between items-center mt-auto transition-colors">
-                                        <div className="flex gap-3 items-center">
+                                    <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0 mt-auto transition-colors">
+                                        <div className="flex flex-wrap gap-3 items-center">
                                             {profile.linkedInUrl ? (
                                                 <a
                                                     href={profile.linkedInUrl.startsWith('http') ? profile.linkedInUrl : `https://${profile.linkedInUrl}`}
