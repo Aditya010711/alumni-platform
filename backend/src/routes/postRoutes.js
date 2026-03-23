@@ -7,7 +7,8 @@ const {
     getFeed,
     likePost,
     commentPost,
-    sharePost
+    sharePost,
+    getUserPosts
 } = require('../controllers/postController');
 const { getRecommendedJobs } = require('../controllers/jobController');
 const { protect } = require('../middlewares/authMiddleware');
@@ -28,6 +29,7 @@ const commentValidationRules = [
 
 // IMPORTANT: Put concrete paths like /jobs/recommended BEFORE dynamic paths like /:id
 router.get('/jobs/recommended', protect, getRecommendedJobs);
+router.get('/profile/:profileId', protect, getUserPosts);
 
 router.route('/')
     .post(protect, upload.single('image'), postValidationRules, validate, createPost)

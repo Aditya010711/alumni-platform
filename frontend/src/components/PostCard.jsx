@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { formatDistanceToNow } from 'date-fns';
 import api from '../services/api';
@@ -70,15 +71,19 @@ const PostCard = ({ post, onPostUpdated }) => {
         <div className={isShared ? "border border-gray-200 dark:border-gray-700 rounded-lg p-4 mt-3 bg-gray-50 dark:bg-gray-700/50" : "mt-3"}>
             {isShared && (
                 <div className="flex items-center gap-3 mb-3 pb-3 border-b border-gray-200 dark:border-gray-700">
-                    {p.author?.profilePicture ? (
-                        <img src={`https://alumni-platform-rwbo.onrender.com${p.author.profilePicture}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover" />
-                    ) : (
-                        <div className="w-8 h-8 bg-primary-100 dark:bg-gray-600 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-xs uppercase">
-                            {p.author?.firstName?.[0]}{p.author?.lastName?.[0]}
-                        </div>
-                    )}
+                    <Link to={`/profile/${p.author?.user?._id || p.author?.user}`} className="hover:opacity-80 transition-opacity">
+                        {p.author?.profilePicture ? (
+                            <img src={`https://alumni-platform-rwbo.onrender.com${p.author.profilePicture}`} alt="Avatar" className="w-8 h-8 rounded-full object-cover" />
+                        ) : (
+                            <div className="w-8 h-8 bg-primary-100 dark:bg-gray-600 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-xs uppercase">
+                                {p.author?.firstName?.[0]}{p.author?.lastName?.[0]}
+                            </div>
+                        )}
+                    </Link>
                     <div>
-                        <h4 className="font-bold text-gray-900 dark:text-gray-100 text-sm">{p.author?.firstName} {p.author?.lastName}</h4>
+                        <Link to={`/profile/${p.author?.user?._id || p.author?.user}`} className="hover:text-primary-600 transition-colors">
+                            <h4 className="font-bold text-gray-900 dark:text-gray-100 text-sm">{p.author?.firstName} {p.author?.lastName}</h4>
+                        </Link>
                         <p className="text-gray-500 dark:text-gray-400 text-xs">{p.author?.currentCompany ? `${p.author.role} at ${p.author.currentCompany}` : p.author?.degree}</p>
                     </div>
                 </div>
@@ -125,15 +130,19 @@ const PostCard = ({ post, onPostUpdated }) => {
             {/* Header */}
             <div className="flex flex-wrap justify-between items-start gap-2">
                 <div className="flex items-center gap-3">
-                    {post.author?.profilePicture ? (
-                        <img src={`https://alumni-platform-rwbo.onrender.com${post.author.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" />
-                    ) : (
-                        <div className="w-12 h-12 bg-primary-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-lg uppercase">
-                            {post.author?.firstName?.[0]}{post.author?.lastName?.[0]}
-                        </div>
-                    )}
+                    <Link to={`/profile/${post.author?.user?._id || post.author?.user}`} className="hover:opacity-80 transition-opacity">
+                        {post.author?.profilePicture ? (
+                            <img src={`https://alumni-platform-rwbo.onrender.com${post.author.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover border border-gray-100 dark:border-gray-700" />
+                        ) : (
+                            <div className="w-12 h-12 bg-primary-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-lg uppercase">
+                                {post.author?.firstName?.[0]}{post.author?.lastName?.[0]}
+                            </div>
+                        )}
+                    </Link>
                     <div>
-                        <h3 className="font-bold text-gray-900 dark:text-gray-100">{post.author?.firstName} {post.author?.lastName}</h3>
+                        <Link to={`/profile/${post.author?.user?._id || post.author?.user}`} className="hover:text-primary-600 transition-colors">
+                            <h3 className="font-bold text-gray-900 dark:text-gray-100">{post.author?.firstName} {post.author?.lastName}</h3>
+                        </Link>
                         <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-1">{post.author?.currentCompany ? `${post.author.role} at ${post.author.currentCompany}` : post.author?.degree}</p>
                         <p className="text-gray-400 dark:text-gray-500 text-xs mt-0.5">{formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}</p>
                     </div>

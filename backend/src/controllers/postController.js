@@ -50,7 +50,7 @@ exports.createPost = async (req, res, next) => {
         const post = await newPost.save();
 
         // Populate author to return immediately
-        await post.populate('author', ['firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role']);
+        await post.populate('author', ['user', 'firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role']);
 
         res.status(201).json(post);
     } catch (err) {
@@ -72,7 +72,7 @@ exports.getFeed = async (req, res, next) => {
             .sort({ createdAt: -1 }) // Newest first
             .skip(skip)
             .limit(limitNum)
-            .populate('author', ['firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role'])
+            .populate('author', ['user', 'firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role'])
             .populate('comments.author', ['firstName', 'lastName', 'profilePicture'])
             .populate({
                 path: 'sharedPost',
@@ -91,6 +91,32 @@ exports.getFeed = async (req, res, next) => {
             total
         });
     } catch (err) {
+        next(err);
+    }
+};
+
+// @desc    Get posts by a specific profile
+// @route   GET /api/posts/profile/:profileId
+// @access  Private
+exports.getUserPosts = async (req, res, next) => {
+    try {
+        const posts = await Post.find({ author: req.params.profileId })
+            .sort({ createdAt: -1 })
+            .populate('author', ['user', 'firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role'])
+            .populate('comments.author', ['firstName', 'lastName', 'profilePicture'])
+            .populate({
+                path: 'sharedPost',
+                populate: {
+                    path: 'author',
+                    select: ['firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role']
+                }
+            });
+
+        res.status(200).json(posts);
+    } catch (err) {
+        if (err.kind === 'ObjectId') {
+            return res.status(404).json({ message: 'Profile not found' });
+        }
         next(err);
     }
 };

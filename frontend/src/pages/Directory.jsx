@@ -126,18 +126,26 @@ const Directory = () => {
                                 >
                                     <div className="flex items-start justify-between">
                                         <div>
-                                            <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100">
+                                            <h3 
+                                                className="text-xl font-bold text-gray-900 dark:text-gray-100 cursor-pointer hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                                                onClick={() => navigate(`/profile/${targetUserId}`)}
+                                            >
                                                 {profile.firstName} {profile.lastName}
                                             </h3>
                                             <p className="text-primary-600 dark:text-primary-400 font-medium text-sm mt-1">Class of {profile.graduationYear}</p>
                                         </div>
-                                        {profile.profilePicture ? (
-                                            <img src={`https://alumni-platform-rwbo.onrender.com${profile.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover shadow-sm border border-gray-100 dark:border-gray-700" />
-                                        ) : (
-                                            <div className="w-12 h-12 bg-primary-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-xl uppercase">
-                                                {profile.firstName[0]}{profile.lastName[0]}
-                                            </div>
-                                        )}
+                                        <div 
+                                            className="cursor-pointer hover:opacity-80 transition-opacity"
+                                            onClick={() => navigate(`/profile/${targetUserId}`)}
+                                        >
+                                            {profile.profilePicture ? (
+                                                <img src={`https://alumni-platform-rwbo.onrender.com${profile.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover shadow-sm border border-gray-100 dark:border-gray-700" />
+                                            ) : (
+                                                <div className="w-12 h-12 bg-primary-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-xl uppercase">
+                                                    {profile.firstName[0]}{profile.lastName[0]}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
 
                                     <div className="mt-4 space-y-2 flex-grow">

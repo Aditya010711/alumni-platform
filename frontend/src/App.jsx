@@ -9,6 +9,7 @@ import Register from './pages/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import Directory from './pages/Directory';
 import Profile from './pages/Profile';
+import UserProfile from './pages/UserProfile';
 import Feed from './pages/Feed';
 import Messages from './pages/Messages';
 import Jobs from './pages/Jobs';
@@ -149,6 +150,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile/:id"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
               </ProtectedRoute>
             }
           />
