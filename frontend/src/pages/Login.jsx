@@ -9,14 +9,27 @@ const Login = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
 
+    const [isLoading, setIsLoading] = useState(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
+        const timeoutId = setTimeout(() => {
+            toast.loading('Waking up cloud server... This can take up to 50 seconds.', { id: 'booting' });
+        }, 4000);
+
         try {
             await login(email, password);
+            clearTimeout(timeoutId);
+            toast.dismiss('booting');
             toast.success('Successfully logged in!');
             navigate('/directory');
         } catch (err) {
+            clearTimeout(timeoutId);
+            toast.dismiss('booting');
             toast.error(err.response?.data?.message || 'Failed to login');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -50,9 +63,15 @@ const Login = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-sm"
+                        disabled={isLoading}
+                        className="w-full py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-sm disabled:opacity-75 disabled:cursor-not-allowed flex justify-center items-center gap-2"
                     >
-                        Sign In
+                        {isLoading ? (
+                            <>
+                                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                                Signing In...
+                            </>
+                        ) : 'Sign In'}
                     </button>
                 </form>
 

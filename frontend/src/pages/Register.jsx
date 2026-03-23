@@ -12,6 +12,7 @@ const Register = () => {
     });
     const { register } = useAuth();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,15 +24,24 @@ const Register = () => {
             return toast.error('Passwords do not match');
         }
 
+        setIsLoading(true);
+        const timeoutId = setTimeout(() => {
+            toast.loading('Waking up cloud server... This can take up to 50 seconds.', { id: 'booting' });
+        }, 4000);
+
         try {
             await register({
                 username: formData.username,
                 email: formData.email,
                 password: formData.password,
             });
+            clearTimeout(timeoutId);
+            toast.dismiss('booting');
             toast.success('Registration successful. Welcome!');
             navigate('/profile'); // Redirect to create profile right after signup
         } catch (err) {
+            clearTimeout(timeoutId);
+            toast.dismiss('booting');
             if (err.response?.data?.errors) {
                 // Handle express-validator errors array
                 const errorMsg = err.response.data.errors[0].msg;
@@ -39,6 +49,8 @@ const Register = () => {
             } else {
                 toast.error(err.response?.data?.message || 'Failed to register');
             }
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -100,9 +112,15 @@ const Register = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-sm mt-4"
+                        disabled={isLoading}
+                        className="w-full py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-sm mt-4 disabled:opacity-75 disabled:cursor-not-allowed flex justify-center items-center gap-2"
                     >
-                        Create Account
+                        {isLoading ? (
+                            <>
+                                <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                                Creating...
+                            </>
+                        ) : 'Create Account'}
                     </button>
                 </form>
 
