@@ -7,7 +7,7 @@ exports.getMyProfile = async (req, res, next) => {
     try {
         const profile = await Profile.findOne({ user: req.user.id }).populate(
             'user',
-            ['username', 'email']
+            'username email'
         );
 
         if (!profile) {
@@ -105,7 +105,7 @@ exports.getProfiles = async (req, res, next) => {
         const skip = (pageNum - 1) * limitNum;
 
         const profiles = await Profile.find(query)
-            .populate('user', ['username', 'email'])
+            .populate('user', 'username email')
             .skip(skip)
             .limit(limitNum);
 
@@ -129,7 +129,7 @@ exports.getProfileByUserId = async (req, res, next) => {
     try {
         const profile = await Profile.findOne({ user: req.params.user_id }).populate(
             'user',
-            ['username', 'email']
+            'username email'
         );
 
         if (!profile) {

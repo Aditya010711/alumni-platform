@@ -142,7 +142,7 @@ const Directory = () => {
                                                 <img src={`https://alumni-platform-rwbo.onrender.com${profile.profilePicture}`} alt="Avatar" className="w-12 h-12 rounded-full object-cover shadow-sm border border-gray-100 dark:border-gray-700" />
                                             ) : (
                                                 <div className="w-12 h-12 bg-primary-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center font-bold text-xl uppercase">
-                                                    {profile.firstName[0]}{profile.lastName[0]}
+                                                    {profile.firstName?.[0]}{profile.lastName?.[0]}
                                                 </div>
                                             )}
                                         </div>

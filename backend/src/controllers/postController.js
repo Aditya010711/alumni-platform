@@ -50,7 +50,7 @@ exports.createPost = async (req, res, next) => {
         const post = await newPost.save();
 
         // Populate author to return immediately
-        await post.populate('author', ['user', 'firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role']);
+        await post.populate('author', 'user firstName lastName profilePicture degree currentCompany role');
 
         res.status(201).json(post);
     } catch (err) {
@@ -72,8 +72,8 @@ exports.getFeed = async (req, res, next) => {
             .sort({ createdAt: -1 }) // Newest first
             .skip(skip)
             .limit(limitNum)
-            .populate('author', ['user', 'firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role'])
-            .populate('comments.author', ['firstName', 'lastName', 'profilePicture'])
+            .populate('author', 'user firstName lastName profilePicture degree currentCompany role')
+            .populate('comments.author', 'firstName lastName profilePicture')
             .populate({
                 path: 'sharedPost',
                 populate: {
@@ -102,8 +102,8 @@ exports.getUserPosts = async (req, res, next) => {
     try {
         const posts = await Post.find({ author: req.params.profileId })
             .sort({ createdAt: -1 })
-            .populate('author', ['user', 'firstName', 'lastName', 'profilePicture', 'degree', 'currentCompany', 'role'])
-            .populate('comments.author', ['firstName', 'lastName', 'profilePicture'])
+            .populate('author', 'user firstName lastName profilePicture degree currentCompany role')
+            .populate('comments.author', 'firstName lastName profilePicture')
             .populate({
                 path: 'sharedPost',
                 populate: {
@@ -179,7 +179,7 @@ exports.commentPost = async (req, res, next) => {
         await post.save();
 
         // Populate comments author before returning
-        await post.populate('comments.author', ['firstName', 'lastName', 'profilePicture']);
+        await post.populate('comments.author', 'firstName lastName profilePicture');
 
         res.status(201).json(post.comments);
     } catch (err) {
