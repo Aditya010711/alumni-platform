@@ -179,7 +179,7 @@ const Messages = () => {
     return (
         <div className="flex bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 h-[calc(100vh-8rem)] overflow-hidden">
             {/* Left Sidebar - Conversations */}
-            <div className="w-1/3 border-r border-gray-100 dark:border-gray-700 flex flex-col bg-white dark:bg-gray-800 relative">
+            <div className={`w-full md:w-1/3 border-r border-gray-100 dark:border-gray-700 flex flex-col bg-white dark:bg-gray-800 relative ${currentChat ? 'hidden md:flex' : 'flex'}`}>
                 <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
                     <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">Messages</h2>
                     <div className="relative">
@@ -295,11 +295,17 @@ const Messages = () => {
             </div>
 
             {/* Right Side - Chat Box */}
-            <div className="flex-1 flex flex-col bg-gray-50 dark:bg-gray-900/50">
+            <div className={`flex-1 flex flex-col bg-gray-50 dark:bg-gray-900/50 ${!currentChat ? 'hidden md:flex' : 'flex'}`}>
                 {currentChat ? (
                     <>
                         {/* Chat Header */}
                         <div className="p-4 border-b border-gray-100 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center gap-3">
+                            <button
+                                onClick={() => setCurrentChat(null)}
+                                className="md:hidden text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white mr-2 focus:outline-none"
+                            >
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" /></svg>
+                            </button>
                             {currentChat.partner.profilePicture ? (
                                 <img src={`https://alumni-platform-rwbo.onrender.com${currentChat.partner.profilePicture}`} alt="" className="w-10 h-10 rounded-full object-cover" />
                             ) : (
